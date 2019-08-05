@@ -38,6 +38,8 @@ object Main {
          """.stripMargin
 
     val keys = spark.sql(query).collect()
+    logger.info(s"pushing rows to indexes ${keys.mkString(",")}")
+
     try {
       keys.foreach(row => {
         val indexName = row.getAs[Long](keyField)
@@ -53,7 +55,6 @@ object Main {
         val df = spark.sql(partQuery)
         val data = df.withColumn("date", toTimestamp(col("timestamp")))
 
-        logger.info(s"pushing rows to index $indexName")
         EsSparkSQL.saveToEs(data, indexName.toString)
       })
     } finally {
