@@ -44,7 +44,7 @@ object Main {
       keys.foreach(row => {
         val indexName = row.getAs[Long](keyField)
 
-        logger.info(s"fetching data for $keyField=$indexName")
+        logger.debug(s"fetching data for $keyField=$indexName")
         val partQuery =
           s"""
              |SELECT *

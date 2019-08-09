@@ -27,6 +27,6 @@ assemblyMergeStrategy in assembly := {
   case _ => MergeStrategy.first
 }
 
-mainClass in assembly := Some("me.rotemfo.spark.es.main")
+mainClass in assembly := Some("me.rotemfo.spark.es.Main")
 
 test in assembly := {}
